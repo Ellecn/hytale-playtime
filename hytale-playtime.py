@@ -19,7 +19,7 @@ def get_playtime_in_seconds(world_folder):
     with open(f"{world_folder}/universe/worlds/default/resources/Time.json", 'r') as file:
         json_data = json.load(file)
         delta = datetime.strptime(json_data['Now'].rstrip('Z')[:-3], '%Y-%m-%dT%H:%M:%S.%f') - datetime(1970, 1, 1)
-        return delta.seconds
+        return delta.seconds + (delta.days * 24 * 60 * 60)
 
 def format(seconds):
     return f"{seconds//3600}h:{(seconds%3600)//60}m"
